@@ -1,4 +1,6 @@
-import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.ArrayList;
+
 
 public class BasicJava {
     //1
@@ -45,16 +47,11 @@ public class BasicJava {
         return max;
     }
 
-    public void arrOdd255(){
-        int[] numArr =  new int[256];
-        for(int i = 0; i < numArr.length; i++) {
-            if(i%2 != 0){
-                numArr[i] = i;
-            }
+    public ArrayList arrOdd255(){
+        ArrayList oddsList = new ArrayList();
+        for (int i = 1; i <= 255; i += 2) {
+            oddsList.add(i);
         }
-
-        for(int i = 0; i < numArr.length; i++) {
-            System.out.println(numArr[i]);
-        }
+        return oddsList;
     }
 }

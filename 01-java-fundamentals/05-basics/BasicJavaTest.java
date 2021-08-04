@@ -25,7 +25,9 @@ public class BasicJavaTest {
         System.out.println(bJava.maxArr(arr2));
 
         //6
-        bJava.arrOdd255();
+        //anytime you are POPULATING an array please use ARRAYLIST
+        System.out.println(bJava.arrOdd255());
+        
 
     }
 }
