@@ -47,11 +47,94 @@ public class BasicJava {
         return max;
     }
 
+    //6
+    //If you're POPULATING an array USE ARRAYLIST 
     public ArrayList arrOdd255(){
         ArrayList oddsList = new ArrayList();
         for (int i = 1; i <= 255; i += 2) {
             oddsList.add(i);
         }
         return oddsList;
+    }
+
+    //7
+    public void avgArr(int[] arr){
+        int sum =0;
+        for(int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        System.out.println(sum/arr.length);
+    }
+
+    //8
+    public int greaterThanY(int[] arr, int y) {
+        int valuesGreaterThanY = 0;
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] > y){
+                valuesGreaterThanY++;
+            }
+        }
+        return valuesGreaterThanY;
+    }
+
+    //9
+    public ArrayList squareArr(int[] arr) {
+        ArrayList squareList = new ArrayList();
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] *= arr[i];
+            squareList.add(arr[i]);
+        }
+        return squareList;
+    }
+
+    //10
+    //arrays to string allows you to view what is inside the array
+    public String noNegArr(int[] arr) {
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] < 0) {
+                arr[i] = 0;
+            }
+        }
+        return Arrays.toString(arr);
+    }
+
+    //11
+    public ArrayList maxMinAvg(int[] arr) {
+        ArrayList maxMinAvgList = new ArrayList();
+        int max = arr[0];
+        int min = arr[0];
+        int sum = 0;
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] > max){
+                max = arr[i];
+            }
+            if(arr[i] < min){
+                min = arr[i];
+            }
+            sum += arr[i];
+        }
+        int avg= sum/arr.length;
+        maxMinAvgList.add(max);
+        maxMinAvgList.add(min);
+        maxMinAvgList.add(avg);
+        return maxMinAvgList;
+    }
+
+    //12
+    //Given any array x, say [1, 5, 10, 7, -2], write a method that shifts each
+    //number by one to the front. 
+    //For example, when the method is done, an x of
+    //[1, 5, 10, 7, -2] should become [5, 10, 7, -2, 0]. Notice that the last
+    //number is 0. The method does not need to wrap around the values shifted
+    //out of bounds.
+    public ArrayList shiftArray(int[] arr){
+        ArrayList shiftArrList = new ArrayList();
+        for(int i = 0; i < arr.length-1; i++) {
+            arr[i] = arr[i+1];
+            shiftArrList.add(arr[i]);
+        }
+        arr[arr.length-1] = 0;
+        shiftArrList.add(arr[arr.length-1]);
+        return shiftArrList;
     }
 }
