@@ -51,7 +51,7 @@ public class BasicJava {
     //If you're POPULATING an array USE ARRAYLIST for ease
     //when initializing an array(regular array) int[] num = new int[5] (5 is the length) 
     public ArrayList arrOdd255(){
-        ArrayList oddsList = new ArrayList();
+        ArrayList<Integer> oddsList = new ArrayList<Integer>();
         for (int i = 1; i <= 255; i += 2) {
             oddsList.add(i);
         }
@@ -80,7 +80,7 @@ public class BasicJava {
 
     //9
     public ArrayList squareArr(int[] arr) {
-        ArrayList squareList = new ArrayList();
+        ArrayList<Integer> squareList = new ArrayList<Integer>();
         for(int i = 0; i < arr.length; i++) {
             arr[i] *= arr[i];
             squareList.add(arr[i]);
@@ -101,7 +101,7 @@ public class BasicJava {
 
     //11
     public ArrayList maxMinAvg(int[] arr) {
-        ArrayList maxMinAvgList = new ArrayList();
+        ArrayList<Integer> maxMinAvgList = new ArrayList<Integer>();
         int max = arr[0];
         int min = arr[0];
         int sum = 0;
@@ -129,7 +129,7 @@ public class BasicJava {
     //number is 0. The method does not need to wrap around the values shifted
     //out of bounds.
     public ArrayList shiftArray(int[] arr){
-        ArrayList shiftArrList = new ArrayList();
+        ArrayList<Integer> shiftArrList = new ArrayList<Integer>();
         for(int i = 0; i < arr.length-1; i++) {
             arr[i] = arr[i+1];
             shiftArrList.add(arr[i]);
@@ -148,5 +148,4 @@ public class BasicJava {
     }
 //user snippets "cls" for sysout
 //user snippet for iterating through an array is "for"
-    
 }
