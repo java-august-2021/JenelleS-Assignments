@@ -48,7 +48,8 @@ public class BasicJava {
     }
 
     //6
-    //If you're POPULATING an array USE ARRAYLIST 
+    //If you're POPULATING an array USE ARRAYLIST for ease
+    //when initializing an array(regular array) int[] num = new int[5] (5 is the length) 
     public ArrayList arrOdd255(){
         ArrayList oddsList = new ArrayList();
         for (int i = 1; i <= 255; i += 2) {
@@ -137,4 +138,15 @@ public class BasicJava {
         shiftArrList.add(arr[arr.length-1]);
         return shiftArrList;
     }
+
+    public void shiftingArr(int[] arr){
+        for(int i = 1; i < arr.length; i++){
+            arr[i-1] = arr[i];
+        }
+        arr[arr.length-1] = 0;
+        System.out.println(Arrays.toString(arr));
+    }
+//user snippets "cls" for sysout
+//user snippet for iterating through an array is "for"
+    
 }

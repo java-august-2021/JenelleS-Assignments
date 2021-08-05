@@ -61,5 +61,8 @@ public class BasicJavaTest {
         //12
         int[] arr8 = {1, 5, 10, 7, -2};
         System.out.println(bJava.shiftArray(arr8));
+
+        int[] arr9 = {1, 5, 10, 7, -2};
+        bJava.shiftingArr(arr9);
     }
 }
