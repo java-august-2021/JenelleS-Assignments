@@ -1,7 +1,8 @@
 public class Mammal {
-    private int energyLevel = 100;
+    private int energyLevel;
 
     public Mammal() {
+        this.energyLevel = 100;
     }
 
     public int displayEnergy(){//this returns a number*****
