@@ -22,7 +22,7 @@ public class Human {
 
     public int attack(Human target){
         target.health -= this.strength;
-        System.out.println(this.name + " attacked! " + target.name + " health decreased to "  + target.health);
+        System.out.println("You attacked! Their health decreased to "  + target.health);
         return health;
     }
 
