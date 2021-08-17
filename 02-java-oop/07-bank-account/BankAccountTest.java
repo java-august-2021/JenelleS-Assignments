@@ -19,10 +19,7 @@ public class BankAccountTest {
         samir.accountDetails();
         samir.withdrawlSaving(50000);
         samir.accountDetails();
+        julie.accountDetails();
         System.out.println(BankAccount.getNumOfAccts());
-
-        samir.accountNumber();
-        julie.accountNumber();
-        samir.accountNumber();
-    }
+        }
 }

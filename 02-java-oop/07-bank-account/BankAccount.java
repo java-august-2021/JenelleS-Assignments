@@ -5,13 +5,14 @@ public class BankAccount {
 
     private double checkingBal;
     private double savingsBal;
+    private String accountNumber;
     private static int numOfAccts = 0;
     private static int totalMoneyStored = 0; //in every account created
     
     //constructor
     public BankAccount() {
         numOfAccts++;
-        accountNumber();
+        this.accountNumber= accountNumber();
     }
 
     public String accountNumber(){
@@ -67,6 +68,7 @@ public class BankAccount {
     public void accountDetails(){
         System.out.println( checkingBal + " in Checking and " + savingsBal + " in Savings. ");
         System.out.println("Total money in the entire bank " + totalMoneyStored);
+        System.out.println(accountNumber);
     }
 
 
