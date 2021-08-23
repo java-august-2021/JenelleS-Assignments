@@ -10,6 +10,6 @@
 	</head>
 	<body>
 	<h1>Hello <c:out value="${search}"/></h1>
-	<p>Welcome to Springboot!</p>
+	<p>Welcome to Springboot! BootStrap Has dependenciessss</p>
 	</body>
 </html>
