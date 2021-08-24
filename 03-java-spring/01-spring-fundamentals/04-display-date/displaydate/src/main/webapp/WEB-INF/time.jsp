@@ -8,11 +8,13 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" href="displaydate.css">
-		<script src="displaydate.js"></script>
+		<script src="displaytime.js"></script>
 		<title>Time</title>
 	</head>
 	<body>
+		<div id="green">
 		<fmt:formatDate pattern="h:m a" value="${time}" />
+		</div>
 		<a href="http://localhost:8080">Main Page</a>
 	</body>
 </html>

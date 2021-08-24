@@ -12,7 +12,10 @@
 		<title>Date</title>
 	</head>
 	<body>
-		<fmt:formatDate pattern="EE, 'the' dd 'of' MMMM, YYYY" value="${date}" />
+		<div id="blue">
+			<fmt:formatDate pattern="EE, 'the' dd 'of' MMMM, YYYY" value="${date}" />
+		</div>
 			<a href="http://localhost:8080">Main Page</a>
+		
 	</body>
 </html>
