@@ -18,26 +18,28 @@ public class LanguageService {
 	
 	 public List<Language> allLanguages() {
 	        return langRepo.findAll();
-	    }
-	    // creates a lang
-	    public Language createLanguage(Language l) {
-	        return langRepo.save(l);
-	    }
-	    // retrieves a lang
-	    public Language findLanguage(Long id) {
-	        Optional<Language> optionalLanguage = langRepo.findById(id);
-	        if(optionalLanguage.isPresent()) {
-	            return optionalLanguage.get();
-	        } else {
-	            return null;
-	        }
-	    }
-	    
-	    public Language updateLanguage(Language l) {
-	    	return langRepo.save(l);
-	    }
-	    
-	    public void deleteLanguage(Long id) {
-	    	langRepo.deleteById(id);
-	    }
+    }
+	 
+    // creates a lang
+    public Language createLanguage(Language l) {
+        return langRepo.save(l);
+    }
+    
+    // retrieves a lang
+    public Language findLanguage(Long id) {
+        Optional<Language> optionalLanguage = langRepo.findById(id);
+        if(optionalLanguage.isPresent()) {
+            return optionalLanguage.get();
+        } else {
+            return null;
+        }
+    }
+    
+    public Language updateLanguage(Language l) {
+    	return langRepo.save(l);
+    }
+    
+    public void deleteLanguage(Long id) {
+    	langRepo.deleteById(id);
+    }
 }
