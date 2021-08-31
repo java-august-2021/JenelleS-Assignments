@@ -44,21 +44,28 @@ public class HomeController {
 	
 	@PostMapping("/create")
 	public String newBook(@Valid @ModelAttribute("book") Book book, BindingResult result) {
-		this.bService.createBook(book);
-		return "redirect:/";
+		if(result.hasErrors()) {
+			return "/create.jsp";
+		} else {
+			this.bService.createBook(book);
+			return "redirect:/";
+		}
 	}
 	
 	@GetMapping("/update/{id}")
-	public String update(@ModelAttribute("book") Book book, Model model, @PathVariable("id") Long id) {
+	public String update(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", this.bService.findBook(id));
 		return "Dashboard.jsp";
 	}
 	
 	@PostMapping("/update/{id}")
-	public String updateBook(@Valid @ModelAttribute("book") Book book, BindingResult result, Model model, @PathVariable("id") Long id) {
-		model.addAttribute("book", this.bService.findBook(id));
-		this.bService.updateBook(book);
-		return "redirect:/";
+	public String updateBook(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/Dashboard.jsp";
+		} else {
+			this.bService.updateBook(book);
+			return "redirect:/";
+		}
 	}
 	
 	@GetMapping("/delete/{id}")

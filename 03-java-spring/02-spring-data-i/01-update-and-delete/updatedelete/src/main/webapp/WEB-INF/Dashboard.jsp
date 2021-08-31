@@ -2,14 +2,15 @@
     pageEncoding="ISO-8859-1"%>
    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit</title>
 </head>
 <body>
-<a href="/">Main</a>
+<a href="/">Main</a><!-- This a is a prefilled form note this was added after and can cause issues -->
 		<form:form action="/update/${book.id}" method="POST" modelAttribute="book">
 		<p>
 			<form:label path="title">Title:</form:label>
