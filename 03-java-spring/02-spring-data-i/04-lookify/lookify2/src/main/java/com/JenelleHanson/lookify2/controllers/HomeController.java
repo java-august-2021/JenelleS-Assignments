@@ -65,7 +65,7 @@ public class HomeController {
 	@GetMapping("/search")
 	public String search(@RequestParam("artist") String artist, Model model) {//If you need to search anything it is a request parameter
 		model.addAttribute("allSongsByArtist", this.lService.searchArtist(artist));
-		model.addAttribute("artist", artist);//why did I need both of these model attributes
+		model.addAttribute("artist", artist);// you need both the songs and the artist
 		return "search.jsp";
 	}
 	
