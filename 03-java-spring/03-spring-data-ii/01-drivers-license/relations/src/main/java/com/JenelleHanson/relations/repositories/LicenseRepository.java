@@ -10,5 +10,4 @@ import com.JenelleHanson.relations.models.License;
 @Repository
 public interface LicenseRepository extends CrudRepository<License, Long>{
 	List<License> findAll();
-	License findFirstByOrderByNumberDesc();
 }

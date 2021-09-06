@@ -22,34 +22,17 @@ public class LicenseService {
 	}
 	
 	public License createLicense(License license) {
-//		license.setNumber(this.generateLicenseNum(license));
-		lRepo.save(license);
-		System.out.println(license.getId());
-		return lRepo.save(license);
+		lRepo.save(license);//to get the id you have to save the license first
+		String licNum = String.valueOf(license.getId());//this will take the license's Id and change the value into a string
+		int zeroes = 6 - licNum.length();//licNum.length() will determine how many digits are in the license and how many zeros need to be appended
+		String newLicNum = "";//Now we make a new string that will become the new License with 0's appended eg 000001,000002
+		for(int i = 1; i <= zeroes; i++) {
+			newLicNum += "0";
+		}//for loop helps build the new license string
+		newLicNum +=licNum;//adding the original license number 
+		license.setNumber(newLicNum); //setting the license number in the model 
+		return lRepo.save(license);//saving the updated version
 	}
-	
-//	private String generateLicenseNum(License license) {
-//		License lastLicense = lRepo.findFirstByOrderByNumberDesc();
-//		if(lastLicense.getNumber() == null) {
-//			return lastLicense.setNumber("000001");
-//		} else {
-//			int lastLicenseNumFormatted = Integer.parseInt(lastLicense.getNumber());
-//			lastLicenseNumFormatted++; 
-//			
-//			StringBuilder sb = new StringBuilder();
-//			while (sb.length() < 6 - lastLicenseNumFormatted) {
-//    	    sb.append('0');
-//			}
-//			
-//			String newLicNumber = Integer.toString(lastLicenseNumFormatted);
-//			return newLicNumber;
-//		}
-//	}
-		
-//    	sb.append(idToString);
-//    	String licNum = setNumber(sb.toString());
-//    	return licNum;
-	
 	
 	
 	public License findLicense(Long id) {

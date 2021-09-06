@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.JenelleHanson.relations.models.License;
@@ -54,15 +55,16 @@ public class HomeController {
 			return "/newLicense.jsp";
 		}
 		this.lService.createLicense(license);
-		return "redirect:/showId";
+		Long newId = license.getId();
+		return "redirect:/showId/" + newId;
 	}
 	
 	
 	//Combined
-	@GetMapping("/showId")
-	public String showId(Model model) {
-		model.addAttribute("person", pService.findPerson(null));
-		model.addAttribute("license", lService.findLicense(null));
+	@GetMapping("/showId/{id}")
+	public String showId(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("person", pService.findPerson(id));
+		model.addAttribute("license", lService.findLicense(id));
 		return "showId.jsp";
 	}
 }

@@ -13,5 +13,6 @@
 		<p><c:out value="${license.number}"/></p>
 		<p><c:out value="${license.state}"/></p>
 		<p><c:out value="${license.expiration_date}"/></p>
+		<p><a href="/persons/new">New person</a></p>
 	</body>
 </html>
