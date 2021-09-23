@@ -47,7 +47,6 @@ public class HomeController {
 	//connect everything together
 	@PostMapping("/products/{id}")
 	public String addProd(@RequestParam("categories") Long categoryId, @PathVariable("id") Long id, Model model) {
-		Category catId = pSer.findCategory(categoryId);
 		pSer.createRelationship(id, categoryId);
 		return "redirect:/products/{id}";
 	}
