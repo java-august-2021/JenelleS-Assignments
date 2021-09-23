@@ -37,8 +37,6 @@ public class HomeController {
 	
 	@GetMapping("/new")
 	public String newQuestion(@ModelAttribute("question") Question question, Model model) {
-		
-		
 		return "newQuestion.jsp";
 	}
 	

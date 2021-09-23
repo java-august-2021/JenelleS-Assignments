@@ -18,10 +18,10 @@
 					<th>Questions</th>
 					<th>Tags</th>
 				</tr>
-				<c:forEach items="${question.tags}" var="tag">
+				<c:forEach items="${allQuestions}" var="question">
 					<tr>
-						<td><c:out value="${tag.questions}"/></td>
-						<td><c:out value="${tag.subject}"/></td>
+						<td><c:out value="${question.questionTxt}"/></td>
+						<td><c:out value="${question.tags}"/></td>
 					</tr>
 				</c:forEach>
 			</table>

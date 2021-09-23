@@ -31,6 +31,15 @@ public class Answer {
 	public Answer() {
 	}
 	
+	public Answer(String answerTxt) {
+		this.answerTxt = answerTxt;
+	}
+
+	public Answer(String answerTxt, Question question) {
+		this.answerTxt = answerTxt;
+		this.question = question;
+	}
+
 	@PrePersist
 	    protected void onCreate() {
 	        this.createdAt = new Date();

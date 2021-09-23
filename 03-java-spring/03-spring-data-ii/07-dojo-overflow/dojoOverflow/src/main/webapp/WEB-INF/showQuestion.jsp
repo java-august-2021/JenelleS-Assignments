@@ -25,7 +25,6 @@
 			<c:forEach items="${question.answers}" var="answer">
 				<p><c:out value="${answer.answerTxt}"/></p>
 			</c:forEach>
-			
 		</div>
 	</body>
 </html>
