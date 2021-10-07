@@ -26,7 +26,6 @@ public class Rating {
 	@JoinColumn(name="show_id")
 	private Show show;
 	
-
 	
 	public Long getId() {
 		return id;
