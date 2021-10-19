@@ -34,6 +34,12 @@ public class User {
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
+	
+	//list Of 
+	//private ArrayList<String> albums;
+	//private ArrayList<String> favoritePics;
+	//private ArrayList<String> comments;
+	
 	public User() {
 	}
 	

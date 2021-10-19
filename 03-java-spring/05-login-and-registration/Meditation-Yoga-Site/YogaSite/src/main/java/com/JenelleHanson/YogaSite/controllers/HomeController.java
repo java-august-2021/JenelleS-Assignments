@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,32 +23,42 @@ public class HomeController {
 	@Autowired
 	private UserValidator validator;
 	
-	@GetMapping("/")
-	public String index(@ModelAttribute("user") User user) {
+	@GetMapping("/login")
+	public String login(@ModelAttribute("user") User user) {
 		return "index.jsp";
 	}
 	
-	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+	@GetMapping("/register")
+	public String register(@ModelAttribute("user") User user) {
+		return "dashboard.jsp";
+	}
+	
+	@GetMapping("/main")
+	public String dashRender(@ModelAttribute("user") User user) {
+		return "main.jsp";
+	}
+	
+	@PostMapping("/registerChk")
+	public String registerChk(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		validator.validate(user, result);
 		if(result.hasErrors()) {
 			return "index.jsp";
 		}
 		User newUser = this.uServ.registerUser(user);
 		session.setAttribute("user__id", newUser.getId());
-		return "redirect:/";//change************* next page
+		return "redirect:/main";//change************* next page after login
 	}
 	
-	@PostMapping("/login")
-	public String login(@RequestParam("lemail") String email, @RequestParam("lpassword") String password, RedirectAttributes redirectAttr, HttpSession session) {
+	@PostMapping("/loginChk")
+	public String loginChk(@RequestParam("lemail") String email, @RequestParam("lpassword") String password, RedirectAttributes redirectAttr, HttpSession session) {
 		if(!this.uServ.authenticateUser(email, password)) {
 			redirectAttr.addFlashAttribute("loginError", "Invalid Credentials");
-			return "redirect:/";
+			return "redirect:/index";
 		}
 		
 		User user = this.uServ.getByEmail(email);
 		session.setAttribute("user__id", user.getId());
-		return "redirect:/";//change**************** next page
+		return "redirect:/main";//change**************** next page
 	}
 	
 	@GetMapping("/logout")
@@ -58,9 +67,9 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/meditate")
-	public String dashboard(Model model, HttpSession session) {
-		model.addAttribute("user", this.uServ.findUser((Long)session.getAttribute("user__id")));
-		return "dashboard.jsp";
-	}
+//	@GetMapping("/meditate")
+//	public String dashboard(Model model, HttpSession session) {
+//		model.addAttribute("user", this.uServ.findUser((Long)session.getAttribute("user__id")));
+//		return "main.jsp";
+//	}
 }
