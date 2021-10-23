@@ -20,8 +20,8 @@
 				</tr>
 				<c:forEach items="${allQuestions}" var="question">
 					<tr>
-						<td><c:out value="${question.questionTxt}"/></td>
-						<td><c:out value="${question.tags}"/></td>
+						<td><c:out value="${question.questionTxt}"/><!-- link to question id and connect to the question answer and tag --></td>
+						<td><c:out value="${question.tags}"/></td><!-- Figure out the reason why tags are not showing -->
 					</tr>
 				</c:forEach>
 			</table>

@@ -31,6 +31,7 @@ public class HomeController {
 	public String home(Model model) {
 		model.addAttribute("allQuestions", qSer.allQuestions());
 		model.addAttribute("allTags", qSer.allTags());
+//		model.addAttribute("question", qSer.findQuestion(id));
 		return "home.jsp";
 	}
 	

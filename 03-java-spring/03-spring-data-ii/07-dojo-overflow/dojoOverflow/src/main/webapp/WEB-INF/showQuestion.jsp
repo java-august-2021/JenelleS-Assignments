@@ -25,6 +25,7 @@
 			<c:forEach items="${question.answers}" var="answer">
 				<p><c:out value="${answer.answerTxt}"/></p>
 			</c:forEach>
+			<a href="/questions">Back to Dashboard</a>
 		</div>
 	</body>
 </html>

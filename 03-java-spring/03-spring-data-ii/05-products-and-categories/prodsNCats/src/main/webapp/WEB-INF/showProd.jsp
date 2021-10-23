@@ -35,6 +35,8 @@
 				</div>				
 				<input type="submit" class="btn btn-primary" value="Add"/>
 			</form>
+			<a href="/newCategory">Register a new Category</a>
+			<a href="/newProduct">Register a new Product</a>
 		</div>
 	</body>
 </html>
