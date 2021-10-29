@@ -24,6 +24,7 @@ public class User {
 	private Long id;
 	@NotEmpty
 	private String name;
+	private String picture;
 	@Email
 	@NotBlank
 	private String email;
@@ -35,10 +36,15 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 	
+//	one to many
+//	private List<video> videos;
+//	many to many
+//	private List<video> favorited;
+//	
 	//list Of 
-	//private ArrayList<String> albums;
-	//private ArrayList<String> favoritePics;
-	//private ArrayList<String> comments;
+	//private List<String> albums;
+	//private List<String> favoritePics;
+	//private List<String> comments;
 	
 	public User() {
 	}
@@ -67,6 +73,31 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	
+//	public List<Video> getVideos() {
+//		return videos;
+//	}
+//
+//	public void setVideos(List<Video> videos) {
+//		this.videos = videos;
+//	}
+//
+//	public List<Video> getFavorited() {
+//		return favorited;
+//	}
+//
+//	public void setFavorited(List<Video> favorited) {
+//		this.favorited = favorited;
+//	}
 
 	public String getEmail() {
 		return email;
