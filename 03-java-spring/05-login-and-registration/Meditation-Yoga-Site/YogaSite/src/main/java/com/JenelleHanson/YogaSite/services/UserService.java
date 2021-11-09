@@ -23,6 +23,14 @@ public class UserService {
 		return user;
 	}
 	
+	public User updateUser(User user) {
+		return uRepo.save(user);
+	}
+	
+	public void deleteUser(Long id) {
+		this.uRepo.deleteById(id);
+	}
+	
 	public User registerUser(User user) {
 		String hash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
 		user.setPassword(hash);

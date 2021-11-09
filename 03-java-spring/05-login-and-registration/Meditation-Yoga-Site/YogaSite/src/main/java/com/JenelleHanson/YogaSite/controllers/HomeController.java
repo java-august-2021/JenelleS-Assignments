@@ -5,9 +5,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -28,17 +30,50 @@ public class HomeController {
 		return "index.jsp";
 	}
 	
+	@GetMapping("/updateUser/{id}")
+	public String userEdit(@PathVariable("id") Long id, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("user__id");
+		if(userId != null) {
+			model.addAttribute("user", this.uServ.findUser(id));
+			return "userEdit.jsp";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	@PostMapping("/updateUser/{id}")
+	public String updatePic(@Valid @ModelAttribute("user") User user, BindingResult result) {
+			if(result.hasErrors()) {
+				return "/userEdit.jsp";
+			} else {
+				this.uServ.updateUser(user);
+				return "redirect:/userShow/{id}";
+			}
+	}
+	
+	@GetMapping("/userShow/{id}")
+	public String userShow(@PathVariable("id") Long id, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("user__id");
+		if(userId != null) {
+			model.addAttribute("user", this.uServ.findUser(id));
+			return "userShow.jsp";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	@GetMapping("/destroyUser/{id}")
+	public String destroy(@PathVariable("id") Long id) {
+		this.uServ.deleteUser(id);
+		return "redirect:/pictures";
+	}
+	
 	@GetMapping("/register")
 	public String register(@ModelAttribute("user") User user) {
 		return "dashboard.jsp";
 	}
 	
-	@GetMapping("/main")
-	public String dashRender(@ModelAttribute("user") User user) {
-		return "main.jsp";
-	}
-	
-	@PostMapping("/registerChk")
+	@PostMapping("/register")
 	public String registerChk(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		validator.validate(user, result);
 		if(result.hasErrors()) {
@@ -46,10 +81,10 @@ public class HomeController {
 		}
 		User newUser = this.uServ.registerUser(user);
 		session.setAttribute("user__id", newUser.getId());
-		return "redirect:/main";//change************* next page after login
+		return "redirect:/main";//change to next page after login
 	}
 	
-	@PostMapping("/loginChk")
+	@PostMapping("/login")
 	public String loginChk(@RequestParam("lemail") String email, @RequestParam("lpassword") String password, RedirectAttributes redirectAttr, HttpSession session) {
 		if(!this.uServ.authenticateUser(email, password)) {
 			redirectAttr.addFlashAttribute("loginError", "Invalid Credentials");
@@ -58,18 +93,12 @@ public class HomeController {
 		
 		User user = this.uServ.getByEmail(email);
 		session.setAttribute("user__id", user.getId());
-		return "redirect:/main";//change**************** next page
+		return "redirect:/main";//change to page after login
 	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/login";
 	}
-	
-//	@GetMapping("/meditate")
-//	public String dashboard(Model model, HttpSession session) {
-//		model.addAttribute("user", this.uServ.findUser((Long)session.getAttribute("user__id")));
-//		return "main.jsp";
-//	}
 }

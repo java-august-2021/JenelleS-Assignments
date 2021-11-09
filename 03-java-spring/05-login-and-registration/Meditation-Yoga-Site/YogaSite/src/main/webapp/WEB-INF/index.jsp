@@ -14,7 +14,7 @@
 	<body>
 		<div class="container">
 			<h1>Meditation</h1>
-			<img src="\BlackWomanCrossLegged.jpg" alt="Woman meditating with crossed legs" width="500" height="600">
+			<img src="Photos/BlackWomanCrossLegged.jpg" alt="Woman meditating with crossed legs" width="500" height="600">
 			<div class="row">
 				<div class="col">
 					<h3>Login</h3>
@@ -33,5 +33,6 @@
 				</div>
 			</div>
 		</div>
+		<a href="/main">Main</a>||<a href="/register">Register</a>
 	</body>
 </html>

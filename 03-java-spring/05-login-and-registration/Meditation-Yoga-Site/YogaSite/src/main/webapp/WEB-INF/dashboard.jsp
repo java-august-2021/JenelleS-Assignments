@@ -13,6 +13,7 @@
 	</head>
 	<body>
 		<div class="container">
+		<a href="/login">Login</a>
 			<div class="col">
 				<h3>Register</h3>
 				<form:form action="/register" method="post" modelAttribute="user">

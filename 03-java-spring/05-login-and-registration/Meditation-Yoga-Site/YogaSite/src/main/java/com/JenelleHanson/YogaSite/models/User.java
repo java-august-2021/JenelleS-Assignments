@@ -1,20 +1,27 @@
 package com.JenelleHanson.YogaSite.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PostPersist;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="users")
@@ -24,7 +31,7 @@ public class User {
 	private Long id;
 	@NotEmpty
 	private String name;
-	private String picture;
+	private String profilePic;
 	@Email
 	@NotBlank
 	private String email;
@@ -33,27 +40,37 @@ public class User {
 	@Transient
 	private String passwordConfirm;
 	@Column(updatable=false)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-//	one to many
-//	private List<video> videos;
-//	many to many
-//	private List<video> favorited;
-//	
-	//list Of 
-	//private List<String> albums;
-	//private List<String> favoritePics;
-	//private List<String> comments;
+	@ManyToMany(fetch= FetchType.LAZY)
+	@JoinTable(
+			name ="comments",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="video_id")
+	)
+	private List<Video> vidComments;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+		name ="favorites",
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="video_id")
+	)
+	private List<Video> favVideos;
+	
 	
 	public User() {
 	}
+
 	
 	@PrePersist
 	protected void onCreate() {
 	        this.createdAt = new Date();
 	}
-	@PostPersist
+	@PreUpdate
 	protected void onUpdate() {
 	        this.updatedAt = new Date();
 	}
@@ -74,30 +91,36 @@ public class User {
 		this.name = name;
 	}
 	
-	public String getPicture() {
-		return picture;
+
+	public String getProfilePic() {
+		return profilePic;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
 	}
 
-	
-//	public List<Video> getVideos() {
-//		return videos;
-//	}
-//
-//	public void setVideos(List<Video> videos) {
-//		this.videos = videos;
-//	}
-//
-//	public List<Video> getFavorited() {
-//		return favorited;
-//	}
-//
-//	public void setFavorited(List<Video> favorited) {
-//		this.favorited = favorited;
-//	}
+
+	public List<Video> getFavVideos() {
+		return favVideos;
+	}
+
+
+	public void setFavVideos(List<Video> favVideos) {
+		this.favVideos = favVideos;
+	}
+
+
+	public List<Video> getVidComments() {
+		return vidComments;
+	}
+
+
+	public void setVidComments(List<Video> vidComments) {
+		this.vidComments = vidComments;
+	}
+
 
 	public String getEmail() {
 		return email;
