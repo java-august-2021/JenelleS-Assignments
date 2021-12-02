@@ -26,20 +26,24 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute("lang") Language lang, Model model) {
+	public String index(Model model) {
 		List<Language>allLanguages=this.langService.allLanguages();
 		for(Language l : allLanguages) {
 			System.out.println(l.getId());
 		}
-		System.out.println(this.langService.allLanguages());
 		model.addAttribute("allLanguages", allLanguages);
 		return "index.jsp";
 	}
 	
-	@PostMapping("/")
-	public String create(@Valid @ModelAttribute("lang") Language lang, BindingResult result) {
+	@GetMapping("/new")
+	public String newItem(@ModelAttribute("lang") Language lang) {
+		return "new.jsp";
+	}
+	
+	@PostMapping("/new")
+	public String createNew(@Valid @ModelAttribute("lang") Language lang, BindingResult result) {
 		if(result.hasErrors()) {
-			return "/index.jsp";
+			return "/new.jsp";
 		} else {
 			this.langService.createLanguage(lang);
 			return "redirect:/";

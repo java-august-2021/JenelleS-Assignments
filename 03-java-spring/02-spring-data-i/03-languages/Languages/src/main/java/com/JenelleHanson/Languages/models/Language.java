@@ -23,12 +23,12 @@ public class Language {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message="Please keep name between 2 and 50 characters!")
     private String name;
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message="Please keep creator name between 2 and 50 characters!")
     private String creator;
-    @NotEmpty
+    @NotEmpty(message="Version must not be empty")
     private String currentVersion;
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
